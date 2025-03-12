@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+## dirname /foo/bar/baz returns /foo/bar
+## So, this obviously gets the directory the script is located in
+## Good variable name ThePrimeagen
+script_dir="$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)"
+dry="0"
+
+## Bash-ism for looping through args I think?
+## At any rate, the purpose of this is to find the dry arg and set the flag
+while [[ $# > 0 ]]; do
+  if [[ "$1" == "--dry" ]]; then
+    dry="1"
+  fi
+  shift
+done
+
+## Notice $@ bash-ism which holds whatever is passed into log
+log() {
+  if [[ $dry == "1" ]]; then
+    echo "[DRY_RUN]: $@"
+  else
+    echo "$@"
+  fi
+}
+
+execute() {
+  log "execute: $@"
+  if [[ $dry == "1" ]]; then
+    return
+  fi
+
+  "$@"
+}
+
+copy_dir() {
+  pushd $1
+  to=$2
+  dirs=$(find . -maxdepth 1 -mindepth 1 -type d)
+  for dir in $dirs; do
+    execute rm -rf $to/$dir
+    execute cp -r $dir $to/$dir
+  done
+  popd
+}
+
+copy_file() {
+	from=$1
+	to=$2
+	name=$(basename $from)
+	execute rm $to/$name
+	execute cp $from $to/$name
+}
+
+log "--------- dev-env ---------"
+
+copy_dir .config $XDG_CONFIG_HOME
+#copy_file .specialrc ~/destination
+
+# NEXT STEPS
+# 1. Maybe populate some config?
+# 2. Definitely set up the first portion: the ./run directory
+# 3. Install neovim 
+# 4. Continue course with tmux
+# 5. Populate a single file config for git to setup git defaults like branch name and commit info
+
