@@ -57,10 +57,3 @@ log "--------- dev-env ---------"
 copy_dir .config $XDG_CONFIG_HOME
 #copy_file .specialrc ~/destination
 
-# NEXT STEPS
-# 1. Maybe populate some config?
-# 2. Definitely set up the first portion: the ./run directory
-# 3. Install neovim 
-# 4. Continue course with tmux
-# 5. Populate a single file config for git to setup git defaults like branch name and commit info
-
