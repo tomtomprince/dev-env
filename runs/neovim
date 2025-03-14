@@ -1,3 +1,14 @@
 #!/usr/bin/env bash
 
-echo "HELLO"
+# From https://github.com/neovim/neovim/blob/master/BUILD.md 
+sudo apt-get install ninja-build gettext cmake curl build-essential
+
+git clone https://github.com/neovim/neovim ~/personal/neovim
+cd ~/personal/neovim
+git fetch
+git checkout stable
+
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+
+# Default install location is /usr/local
+sudo make install
