@@ -1,5 +1,10 @@
 # Dev env Bootstrap
 
+## Up next
+1. Then back to the dev env course to install tmux and start building that habit
+2. Think about how to do root config files like .bashrc. My first thought is to have a dir called root next to the .config dir that dev-env loops through and uses copy_file on
+
+## Overview
 This is based on ThePrimeagen's course and then customized
 
 There are two foundational scripts: run and dev-env. The goal is to be able to execute run to download and install all the things and then dev-env to set up all the config files.
@@ -8,7 +13,41 @@ run assumes that there is a directory called runs containing executable bash fil
 
 dev-env assumes that there is a directory called .config with actual scripts and directories to copy over. This differs from most dotfile management methods in that it does not use simlinks.
 
+My goals are:
 
-## Up next
-1. Then back to the dev env course to install tmux and start building that habit
-2. Think about how to do root config files like .bashrc. My first thought is to have a dir called root next to the .config dir that dev-env loops through and uses copy_file on
+1. Aside from setting up git, I just want to run a script to set up a few key tools and languages so I can be productive coding fast.
+2. This needs to be light on loc because I want to review it before actually using it.
+3. not have to look up a DSL to understand what it's going to do. Ansible is out
+4. not to use a tool to sync my dot files. I always forget how they work as it's another DSL
+5. lean more on bedrock open source tools that are super stable so I don't have to relearn them all the time. I do enough of this with React.
+6. be more proficient with Linux use
+
+This aligned with ThePrimagen's course, so here we are.
+
+## Directions
+1. clone down to ~/personal/
+2. You can add dev-env and/or run (rename it) to your path if you want. I've been just running them
+3. Run "run" to install all the things
+4. Run dev-env to copy over config files
+
+Both scripts have a --dry option for a dry run
+
+## Uses
+There are a few choices on tools
+
+1. bash-like shell. zsh is probably fine but I used bash on lubuntu while setting this up
+2. You might need a terminal emulator other than what your OS comes with. I'm on Qterminal which is default in lubuntu, but Ghostty, XTerm, etc will be nice experiences
+3. Neovim for text editing. I almost went in on Vim instead
+4. Tmux for managing terminal real estate
+
+## Tmux
+Reiterating goals from Prime's course:
+
+1. sessions last even when I close my terminal
+2. multiple running sessions, and these sessions are based on directory
+3. "tabs" within a session
+4. navigate to any session by directory name "instantly"
+5. navigate to any session by directory with fuzzy find
+6. run scripts or whatever programs I want when navigating to a directory
+
+
