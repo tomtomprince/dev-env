@@ -1,8 +1,9 @@
 # Dev env Bootstrap
 
 ## Up next
-1. Then back to the dev env course to install tmux and start building that habit
-2. Think about how to do root config files like .bashrc. My first thought is to have a dir called root next to the .config dir that dev-env loops through and uses copy_file on
+1. Need to move root level dotfiles like `.bashrc` into this root and use copy_file to overwrite them
+2. Consider installing zsh and all that. I miss the completions
+3. Add fzf install script and get back to the course
 
 ## Overview
 This is based on ThePrimeagen's course and then customized
