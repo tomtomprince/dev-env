@@ -31,6 +31,7 @@ This aligned with ThePrimagen's course, so here we are.
 3. Run "run" to install all the things
 4. Run dev-env to copy over config files
 5. Add `~/.local/scripts` to beginning of PATH. This should be handled by dev-env, but I haven't done it yet. I guess .profile is the appropriate place to do this?
+6. Log out and log back in (Mostly to get zsh set as default term)
 
 Both scripts have a --dry option for a dry run
 
