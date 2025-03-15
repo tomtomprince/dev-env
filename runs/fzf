@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+# Autocomplete and whatnot is set up in shell config .zshrc
+# This is actually handled by fzf installer which is super dope
