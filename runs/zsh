@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Config is handled by dev-env
+# Checkout zsh.sourceforge.io
+# It may be more appropriate to install from source in case apt lags behind or
+# our current distro doesn't use apt
+sudo apt install zsh
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
