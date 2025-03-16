@@ -54,7 +54,19 @@ copy_file() {
 
 log "--------- dev-env ---------"
 
+# Assign expected vars if they don't exist
+log "Ensuring expected variables are set"
+# Example of Bash paremeter expansion
+# See bash docs and github.com/neovim/neovim/issues/4951 for deeper explanation
+# This comment and the discussion there notes it can be confusing
+# but I like how terse it is to assign a default value
+# This handles cases like Ubuntu and Mac that don't set XDG spec vars
+log ${XDG_CONFIG_HOME:=$HOME/.config}
+
+# Configuration and personal scripts
 copy_dir .config $XDG_CONFIG_HOME
 copy_dir .local $HOME/.local
-#copy_file .specialrc ~/destination
 
+# Copy single files (usually dotfiles to $HOME)
+copy_file .profile $HOME
+copy_file .zprofile $HOME
