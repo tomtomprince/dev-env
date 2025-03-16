@@ -2,5 +2,5 @@
 	email = tprince14@gmail.com
 	name = Tom Prince
 [core]
-	editor = vim
+	editor = nvim
 
