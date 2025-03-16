@@ -31,3 +31,4 @@ fi
 # tmux isn't running or doesn't have a session by that name
 tmux new-session -ds $selected_name -c $selected
 switch_to
+tmux send-keys -t $selected_name "read-tmux" ^M
