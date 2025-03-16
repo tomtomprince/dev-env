@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Get all directories under ~personal and fzf over them
+selected=$(find ~/personal -mindepth 1 -maxdepth 1 -type d | fzf)
+
+# If we didn't select anything exit
+if [[ -z "$selected" ]]; then
+	exit 0
+fi
+
+# Use tr to replace characters that are invalid for tmux session names
+# Remember that basename gets the end of the path
+# ie /foo/bar would return bar
+selected_name=$(basename $selected | tr ":,. " "____")
+
+switch_to() { 
+	# If we're not in tmux, attach. If we are, switch to the session
+	if [[ -z "$TMUX" ]]; then
+		tmux attach-session -t $selected_name
+	else
+		tmux switch-client -t $selected_name
+	fi
+}
+
+# Quietly check if tmux is running and has a session with the name
+if tmux has-session -t=$selected_name 2> /dev/null; then
+	switch_to
+	exit 0
+fi
+
+# tmux isn't running or doesn't have a session by that name
+tmux new-session -ds $selected_name -c $selected
+switch_to
