@@ -4,6 +4,10 @@
 # Checkout zsh.sourceforge.io
 # It may be more appropriate to install from source in case apt lags behind or
 # our current distro doesn't use apt
-sudo apt install zsh
+if command -v apt; then
+  sudo apt install zsh
+elif command -v dnf; then
+  sudo dnf install zsh
+fi
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
